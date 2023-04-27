@@ -1,0 +1,14 @@
+#Extensions
+
+*
+!/**/
+!*.*
+!*.h
+*.cpp
+!main.cpp
+*.exe
+
+#vscode
+
+c_cpp_properties.json
+settings.json
