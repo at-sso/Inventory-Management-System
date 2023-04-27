@@ -1,5 +1,5 @@
-#ifndef MATRIXHANDLER_H
-#define MATRIXHANDLER_H
+#ifndef MATRIX_H
+#define MATRIX_H
 
 #pragma once
 
@@ -9,43 +9,43 @@
 
 class MATRIX_HANDLER
 {
-protected:
+public:
     // It is recommended to not modify the values within this class.
-    class GET_MATRIX
+    class GET_OPERATOR
     {
     public:
         // Get all main drinks.
-        std::vector<std::string> MAIN;
+        std::vector<std::string> Main;
         // Get main drink's price by index
-        std::vector<double> PRICE;
+        std::vector<double> MainPrice;
         // Get main drink's brand by index
-        std::map<std::string, int> BRAND;
+        std::map<std::string, int> MainBrand;
         // Get main drink's shelves position.
-        std::map<std::string, int> SHELVES;
+        std::map<std::string, int> ShelvesMatrix;
     };
-    GET_MATRIX get;
 
-public:
     // From all return the drink's price.
     const double &FROM_MAIN_GET_PRICE(const double &price)
     {
-        get.PRICE.emplace_back(price);
-        return get.PRICE.back();
+        op_get.MainPrice.emplace_back(price);
+        return op_get.MainPrice.back();
     }
 
     // From all return the drink's brand.
     const std::string &FROM_MAIN_GET_BRAND(const std::string &_string, const int &brandIndex)
     {
-        get.BRAND[_string] = brandIndex;
+        op_get.MainBrand[_string] = brandIndex;
         return _string;
     }
 
     // Fixes the shelves position.
     const std::map<std::string, int> &GET_MAIN_AND_FIX_SHELVES(const std::map<std::string, int> &_map)
     {
-        get.SHELVES = _map;
-        return get.SHELVES;
+        op_get.ShelvesMatrix = _map;
+        return op_get.ShelvesMatrix;
     }
+
+    MATRIX_HANDLER::GET_OPERATOR op_get;
 };
 
-#endif // MATRIXHANDLER_H
+#endif // MATRIX_H

@@ -5,7 +5,8 @@
 !*.*
 !*.h
 *.cpp
-!main.cpp
+!.main.cpp
+*.main
 *.exe
 
 #vscode
