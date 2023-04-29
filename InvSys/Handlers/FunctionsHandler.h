@@ -1,23 +1,27 @@
+#ifndef MAINFUNCTIONS_H
+#define MAINFUNCTIONS_H
+
 #pragma once
 
 #include <string>
 #include <vector>
 #include <memory>
 
-class Functions
+class FUNCTIONS_HANDLER
 {
-private:
-    std::vector<std::vector<std::shared_ptr<Product>>> shelves;
+protected:
+    size_t ModifyVectorSize;
+    std::vector<std::vector<std::shared_ptr<PRODUCT_HANDLER>>> ShelvesMatrix;
 
 public:
-    Functions(int n_shelves)
+    FUNCTIONS_HANDLER(size_t size) : ModifyVectorSize(size)
     {
-        shelves.resize(n_shelves);
+        ShelvesMatrix.resize(size);
     }
 
-    void addProduct(std::shared_ptr<Product> product)
+    void AddNewProduct(std::shared_ptr<PRODUCT_HANDLER> product)
     {
-        for (auto &shelf : shelves)
+        for (auto &shelf : ShelvesMatrix)
         {
             for (auto &item : shelf)
             {
@@ -28,7 +32,7 @@ public:
             }
         }
 
-        for (auto &shelf : shelves)
+        for (auto &shelf : ShelvesMatrix)
         {
             if (shelf.size() < 5)
             {
@@ -38,9 +42,9 @@ public:
         }
     }
 
-    void removeProduct(int id)
+    void RemoveProduct(int id)
     {
-        for (auto &shelf : shelves)
+        for (auto &shelf : ShelvesMatrix)
         {
             for (auto it = shelf.begin(); it != shelf.end(); ++it)
             {
@@ -53,10 +57,10 @@ public:
         }
     }
 
-    float getTotalPrice() const
+    float GetTotalPrice() const
     {
         float total = 0;
-        for (const auto &shelf : shelves)
+        for (const auto &shelf : ShelvesMatrix)
         {
             for (const auto &item : shelf)
             {
@@ -66,10 +70,10 @@ public:
         return total;
     }
 
-    float getTotalPriceByBrand(const std::string &brand) const
+    float GetTotalPriceByBrand(const std::string &brand) const
     {
         float total = 0;
-        for (const auto &shelf : shelves)
+        for (const auto &shelf : ShelvesMatrix)
         {
             for (const auto &item : shelf)
             {
@@ -82,19 +86,19 @@ public:
         return total;
     }
 
-    float getTotalPriceByShelf(int shelfIndex) const
+    float GetTotalPriceByShelf(int shelfIndex) const
     {
         float total = 0;
-        for (const auto &item : shelves[shelfIndex])
+        for (const auto &item : ShelvesMatrix[shelfIndex])
         {
             total += item->getPrice();
         }
         return total;
     }
 
-    void displayInfo() const
+    void DisplayInfo() const
     {
-        for (const auto &shelf : shelves)
+        for (const auto &shelf : ShelvesMatrix)
         {
             for (const auto &item : shelf)
             {
@@ -103,3 +107,5 @@ public:
         }
     }
 };
+
+#endif // MAINFUNCTIONS_H
