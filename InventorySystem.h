@@ -1,7 +1,7 @@
 #pragma once
 
-#include "InvSys/Handlers/DrinksHandler.h"
-#include "InvSys/Handlers/FunctionsHandler.h"
+#include "src/DrinksHandler.h"
+#include "src/FunctionsHandler.h"
 FUNCTIONS_HANDLER HandleFuncs(5);
 
 #include <memory>
